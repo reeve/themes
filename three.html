@@ -27,6 +27,7 @@
 <meta name="color:Center Background" content="#FFFFFF" />
 <meta name="color:Social Icons Background" content="#CCCCCC" />
 <meta name="color:Feature Color" content="#000000" />
+<meta name="color:Banner Color" content="#000000" />
 <meta name="color:Text" content="#000000" />
 <meta name="color:Blog Title" content="#FFFFFF" />
 <meta name="color:Link" content="#333333"/>
@@ -172,9 +173,9 @@ blockquote{
 #cover{
     background:url("{image:cover photo}") no-repeat center;
     background-size:cover;
-    background-color:{color:feature color};}
+    background-color:{color:banner color};}
 
-#cover #cover-overlay{background-color:{color:feature color};}
+#cover #cover-overlay{background-color:{color:banner color};}
 
 #cover{
     position:relative;
@@ -198,11 +199,21 @@ blockquote{
     color:{color:blog title};}
 
 #navigation a:hover{
-    background:{color:feature color};
-    color: #ffffff;
+    background:{color:banner color};
+    color:{color:feature color};
     -webkit-transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
 	transition: all 0.2s linear;}
+	
+#navigation {
+    background:{color:feature color};
+    padding-top:10px;
+    padding-bottom:10px;
+}	
+	
+#navigation a {
+    font-size:18px;
+}
 	
 ::-webkit-input-placeholder{
     color:#555555;font:15px "Source Sans Pro", san-serif}
