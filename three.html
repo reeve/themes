@@ -92,7 +92,7 @@ html{
     height:103%;}
 
 body, p {
-    font-family: {BodyFont},  Helvetica, Arial, sans-serif;
+    font-family:  Helvetica, Arial, sans-serif;
     font-style: normal;
 	font-size: 14px;
 	padding: 0px;
@@ -262,7 +262,7 @@ blockquote{
 	
 .xpermanote a{
     font-size:11px;
-    font-family:pt sans;
+    /*font-family:pt sans;*/
     line-height:24px;
     text-transform:uppercase;
     color:white;
@@ -429,7 +429,7 @@ blockquote{
 <div class="entry">
 {block:Photo}
 {block:IndexPage}
-<div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-250}" alt="{PhotoAlt}"/></a>{LinkCloseTag}</div>
+<div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-250}" alt="{PhotoAlt}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
 {block:ifShowPhotoCaptions}
 {block:Caption}<div class="photo_caption">{Caption}</div>{/block:Caption}
 {/block:ifShowPhotoCaptions}
@@ -444,6 +444,24 @@ blockquote{
 <li>{LikeButton color="white" size=17}</li>
 </ul>{/block:ifshowphotopermalinks}
 {/block:IndexPage}
+<script class="inline_embed" type="text/javascript">
+    var domain = document.domain,
+    photo_{PostID} = [{
+        "width": "{PhotoWidth-HighRes}",
+        "height": "{PhotoHeight-HighRes}",
+        "low_res": "{PhotoURL-250}",
+        "high_res": "{PhotoURL-HighRes}"
+    }];
+    function event_is_alt_key(e) {
+        return ((!e && window.event && (window.event.metaKey || window.event.altKey)) || (e && (e.metaKey || e.altKey)));
+    };
+    document.getElementById('photo_{PostID}').onclick = function (e) {
+        if (event_is_alt_key(e)) return true;
+        window.parent.Tumblr.Lightbox.init(photo_{PostID});
+        return false;
+    }
+</script>
+
 {/block:Photo}
 
 {block:Photoset}
