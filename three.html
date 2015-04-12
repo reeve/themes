@@ -138,26 +138,31 @@ a:hover{
 .entry{
     {block:ifRoundedPhotos}border-radius:5px;{/block:ifroundedPhotos}
     background-color:{color:Center Background};
- 	margin:25px;
-	margin-bottom:30px;	
+ 	margin:5px;
+	margin-bottom:10px;	
 	padding:5px 5px 2px 5px;
 	float:left;
 	height:auto;
-	{block:IndexPage}overflow:hidden;width:250px;{/block:IndexPage}
+	{block:IndexPage}overflow:hidden;width:400px;{/block:IndexPage}
 	{block:PermalinkPage}width:500px;height:auto;{/block:PermalinkPage}}
+
+.entry .gradient {
+    width: 400px;
+    background: rgba(0,0,0,.4);
+}
 
 .entry img{
     {block:ifRoundedPhotos}border-radius:3px;{/block:ifroundedPhotos}
-    {block:IndexPage}width:230px;{/block:IndexPage}}
+    {block:IndexPage}width:400;{/block:IndexPage}}
 
 {block:indexpage}
 .photo{
-    width:250px;
+    width:400px;
     height:auto;}
 {/block:indexpage}
 
 .photo img{
-	{block:indexpage}width:250px;{/block:indexpage}
+	{block:indexpage}width:400px;{/block:indexpage}
 	-webkit-transition: 0.3s ease-in;}
 
  #chat li{
@@ -273,7 +278,7 @@ blockquote{
     margin-top:-5px;
     padding:10px;
     {block:indexpage}
-    width:240px;
+    width:390px;
     border-top:13px solid {color:feature color};
     {/block:indexpage}
     font-size:20px;
@@ -284,7 +289,7 @@ blockquote{
     margin-top:-5px;
     padding:10px;
     {block:indexpage}
-    width:240px;
+    width:390px;
     border-top:13px solid {color:feature color};
     {/block:indexpage}
     font-size:20px;
@@ -295,7 +300,7 @@ blockquote{
     margin-top:-5px;
     padding:10px;
     {block:indexpage}
-    width:240px;
+    width:390px;
     border-top:13px solid {color:feature color};
     {/block:indexpage}
     margin-bottom:-5px;}    
@@ -328,7 +333,7 @@ blockquote{
 {block:ifnotShowCover}
 {block:ifShowBlogTitle}<a href="/">{Title}</a>{/block:ifShowBlogTitle}
 {/block:ifnotShowCover}
-<a href="/" title="Aye Aye Captain!">Home</a>
+<a href="/">Home</a>
 {block:AskEnabled} <a href="/ask" title="{AskLabel}">Message</a>{/block:AskEnabled}{block:ifLinkOneTitle}<a href="{text:Link One}">{text:Link One Title}</a>{/block:ifLinkOneTitle}{block:ifLinkTwoTitle}<a href="{text:Link Two}">{text:Link Two Title}</a> {/block:ifLinkTwoTitle}{block:ifLinkThreeTitle}<a href="{text:Link Three}">{text:Link Three Title}</a> {/block:ifLinkThreeTitle}{block:ifLinkFourTitle}<a href="{text:Link Four}">{text:Link Four Title}</a> {/block:ifLinkFourTitle}{block:ifLinkFiveTitle}<a href="{text:Link Five}">{text:Link Five Title}</a> {/block:ifLinkFiveTitle}{block:ifLinkSixTitle}<a href="{text:Link Six}">{text:Link Six Title}</a> {/block:ifLinkSixTitle}
 {block:HasPages}{block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}
 {/block:HasPages}
@@ -429,7 +434,7 @@ blockquote{
 <div class="entry">
 {block:Photo}
 {block:IndexPage}
-<div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-250}" alt="{PhotoAlt}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
+<div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
 {block:ifShowPhotoCaptions}
 {block:Caption}<div class="photo_caption">{Caption}</div>{/block:Caption}
 {/block:ifShowPhotoCaptions}
@@ -449,7 +454,7 @@ blockquote{
     photo_{PostID} = [{
         "width": "{PhotoWidth-HighRes}",
         "height": "{PhotoHeight-HighRes}",
-        "low_res": "{PhotoURL-250}",
+        "low_res": "{PhotoURL-400}",
         "high_res": "{PhotoURL-HighRes}"
     }];
     function event_is_alt_key(e) {
@@ -467,7 +472,7 @@ blockquote{
 {block:Photoset}
 <center>
 <div class="photoset">
-{block:IndexPage}{Photoset-250}<a href="{Permalink}">
+{block:IndexPage}{Photoset-400}<a href="{Permalink}">
 {Block:ifshowphotocaptions}{block:Caption}<div class="photo_caption">{Caption}</div>{/block:Caption}{/Block:ifshowphotocaptions}
 {block:IndexPage}
 {block:ifshowphotopermalinks}
@@ -638,7 +643,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(window).load(function () {
 var $content = $('#content');
-$content.masonry({itemSelector: '.entry, .sidebar'}),
+$content.masonry({itemSelector: '.entry, .sidebar', columnWidth: 10}),
 $content.infinitescroll({
 navSelector : 'div#pagination',
 nextSelector : 'div#pagination a#nextPage',
