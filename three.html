@@ -31,6 +31,7 @@
 <meta name="color:Text" content="#000000" />
 <meta name="color:Blog Title" content="#FFFFFF" />
 <meta name="color:Link" content="#333333"/>
+<meta name="color:Navigation Link" content="#333333"/>
 <meta name="color:Link Hover" content="#292929" />
 <meta name="image:Cover Photo" content="" />
 <meta name="image:Logo" content="" />
@@ -233,6 +234,7 @@ blockquote{
 #navigation a {
     font-size:16px;
     padding:6px;
+	color: {color:Navigation Link};
 }
 	
 ::-webkit-input-placeholder{
@@ -246,7 +248,7 @@ blockquote{
     color:#555555;
     font-size:15px "Source Sans Pro", san-serif}
 
-#sidebar{
+#sidebarx {
     {block:ifRoundedPhotos}border-radius:5px;{/block:ifroundedPhotos}
     background-color:{color:Center Background};
     width:250px;
@@ -260,7 +262,7 @@ blockquote{
 	{block:PermalinkPage}
 	height:auto;}
 
-.sidebar img{
+.sidebarx img{
     {block:ifRoundedPhotos}border-radius:3px;{/block:ifroundedPhotos}}
 
 #social-icons img{
@@ -277,12 +279,12 @@ blockquote{
 	transition: all 0.3s linear}
 	
 .xpermanote a{
+    font-family:  Helvetica, Arial, sans-serif;
     font-size:11px;
-    /*font-family:pt sans;*/
     line-height:24px;
     text-transform:uppercase;
     color:white;
-    font-style:bold;}
+}
 
 .xlink{
     margin-left:-5px;
@@ -321,6 +323,16 @@ blockquote{
     margin-bottom:10px;
     padding:10px 5px 0px 5px;}
     
+.photo_caption {
+    padding: 3px;
+}
+
+a.tags {
+    color: #a1a1a1;
+    font-size: 12px;
+    padding-right: 4px;
+}
+    
 {CustomCSS}
 
 </style></head><body>
@@ -354,7 +366,7 @@ blockquote{
 <div id="content">
 {block:ifShowSidebar}
 {block:indexpage}
-<div id="sidebar">
+<div id="sidebarx">
 {block:ifSidebarimage}
 <img src="{image:Sidebar}" alt="{title}" style="width:100%; margin:0px 0px 10px 0px;"/>
 {/block:ifSidebarimage}
@@ -443,7 +455,13 @@ blockquote{
 {block:IndexPage}
 <div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
 {block:ifShowPhotoCaptions}
-{block:Caption}<div class="photo_caption">{Caption}</div>{/block:Caption}
+<div class="photo_caption">
+{block:Caption}{Caption}
+{block:HasTags}<br>
+{block:Tags}<a href="{TagURL}" class="tags">#{Tag}</a> {/block:Tags}
+{/block:hasTags}   
+{/block:Caption}
+</div>
 {/block:ifShowPhotoCaptions}
 {/block:IndexPage}
 {block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"width=500px/>{LinkCloseTag}
@@ -650,7 +668,7 @@ src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(window).load(function () {
 var $content = $('#content');
-$content.masonry({itemSelector: '.entry, .sidebar', columnWidth: 10}),
+$content.masonry({itemSelector: '.entry, .sidebarx', columnWidth: 10}),
 $content.infinitescroll({
 navSelector : 'div#pagination',
 nextSelector : 'div#pagination a#nextPage',
