@@ -87,6 +87,20 @@ src="http://static.tumblr.com/ek9ly4s/ZPLmx9glq/jquery-latest-homemadethemes.js"
 <script type="text/javascript" src="http://static.tumblr.com/ek9ly4s/ts7mxbkbc/infinite-scroll.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:400,600|PT+Sans:400,700|Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
+<script>
+$(function(){ // shorthand document.ready()
+    $('.make_lightbox').each(function(){ // this is just an element I let them click, it carries a series of data- attributes.
+        $(this).on('click',function(){  // when clicked. this is the newer jQuery click() handler that's only in v1.8+ so that may be something to note.
+            var lbArray = []; // create blank array.
+            var arrayContents = {"width":$(this).data('width'), "height":$(this).data('height'), "low_res":$(this).data("lowres"), "high_res":$(this).data('highres')}; // make set of the data- attributes. 
+            lbArray.push(arrayContents); // push the set into the array.
+            Tumblr.Lightbox.init(lbArray,1); // trigger Tumblr lightbox. the '1' is the number of photos it expects. specific to how tumblr has things set up.
+            $('body').toggleClass('tumblr_lightbox_active'); // use this to prevent the user from scrolling.
+        });
+    });
+});
+</script>
+
 <style type="text/css">
 
 html{
@@ -339,7 +353,6 @@ a.tumblr_blog, div.photo_caption a {
     border-bottom:1px dotted;
 }
 
-    
 {CustomCSS}
 
 </style></head><body>
@@ -364,7 +377,7 @@ a.tumblr_blog, div.photo_caption a {
 {block:ifShowBlogTitle}<a href="/">{Title}</a>{/block:ifShowBlogTitle}
 {/block:ifnotShowCover}
 <a href="/">Home</a>
-{block:AskEnabled} <a href="/ask" title="{AskLabel}">{AskLabel}</a>{/block:AskEnabled}{block:ifLinkOneTitle}<a href="{text:Link One}">{text:Link One Title}</a>{/block:ifLinkOneTitle}{block:ifLinkTwoTitle}<a href="{text:Link Two}">{text:Link Two Title}</a> {/block:ifLinkTwoTitle}{block:ifLinkThreeTitle}<a href="{text:Link Three}">{text:Link Three Title}</a> {/block:ifLinkThreeTitle}{block:ifLinkFourTitle}<a href="{text:Link Four}">{text:Link Four Title}</a> {/block:ifLinkFourTitle}{block:ifLinkFiveTitle}<a href="{text:Link Five}">{text:Link Five Title}</a> {/block:ifLinkFiveTitle}{block:ifLinkSixTitle}<a href="{text:Link Six}">{text:Link Six Title}</a> {/block:ifLinkSixTitle}
+{block:AskEnabled} <a href="/ask" title="{AskLabel}">Message</a>{/block:AskEnabled}{block:ifLinkOneTitle}<a href="{text:Link One}">{text:Link One Title}</a>{/block:ifLinkOneTitle}{block:ifLinkTwoTitle}<a href="{text:Link Two}">{text:Link Two Title}</a> {/block:ifLinkTwoTitle}{block:ifLinkThreeTitle}<a href="{text:Link Three}">{text:Link Three Title}</a> {/block:ifLinkThreeTitle}{block:ifLinkFourTitle}<a href="{text:Link Four}">{text:Link Four Title}</a> {/block:ifLinkFourTitle}{block:ifLinkFiveTitle}<a href="{text:Link Five}">{text:Link Five Title}</a> {/block:ifLinkFiveTitle}{block:ifLinkSixTitle}<a href="{text:Link Six}">{text:Link Six Title}</a> {/block:ifLinkSixTitle}
 {block:HasPages}{block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}
 {/block:HasPages}
 </div> 
@@ -460,7 +473,8 @@ a.tumblr_blog, div.photo_caption a {
 <div class="entry">
 {block:Photo}
 {block:IndexPage}
-<div class="photo">{LinkOpenTag}<a href="{Permalink}"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
+
+<div class="photo">{LinkOpenTag}<a href="#"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" class="make_lightbox" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
 {block:ifShowPhotoCaptions}
 <div class="photo_caption">
 {block:Caption}{Caption}
@@ -471,7 +485,7 @@ a.tumblr_blog, div.photo_caption a {
 </div>
 {/block:ifShowPhotoCaptions}
 {/block:IndexPage}
-{block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"width=500px/>{LinkCloseTag}
+{block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" width=500px/>{LinkCloseTag}
 {/block:PermalinkPage}
 {block:IndexPage}{block:ifshowphotopermalinks}
 <div class="gradient"></div>
@@ -481,26 +495,7 @@ a.tumblr_blog, div.photo_caption a {
 <li>{LikeButton color="white" size=17}</li>
 </ul>{/block:ifshowphotopermalinks}
 {/block:IndexPage}
-<script class="inline_embed" type="text/javascript">
-    var domain = document.domain,
-    photo_{PostID} = [{
-        "width": "{PhotoWidth-HighRes}",
-        "height": "{PhotoHeight-HighRes}",
-        "low_res": "{PhotoURL-400}",
-        "high_res": "{PhotoURL-HighRes}"
-    }];
-    function event_is_alt_key(e) {
-        return ((!e && window.event && (window.event.metaKey || window.event.altKey)) || (e && (e.metaKey || e.altKey)));
-    };
-    document.getElementById('photo_{PostID}').onclick = function (e) {
-        if (event_is_alt_key(e)) return true;
-        window.parent.Tumblr.Lightbox.init(photo_{PostID});
-        return false;
-    }
-</script>
-
 {/block:Photo}
-
 {block:Photoset}
 <center>
 <div class="photoset">
