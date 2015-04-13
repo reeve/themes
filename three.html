@@ -186,7 +186,10 @@ a:hover{
 {/block:indexpage}
 
 .photo img{
-	{block:indexpage}width:400px;{/block:indexpage}
+	{block:indexpage}
+	width:400px;
+	cursor: pointer;
+	{/block:indexpage}
 	-webkit-transition: 0.3s ease-in;}
 
  #chat li{
@@ -480,7 +483,7 @@ a.tumblr_blog, div.photo_caption a {
 {block:Photo}
 {block:IndexPage}
 
-<div class="photo">{LinkOpenTag}<a href="#"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" class="make_lightbox" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" id="photo_{PostID}"/></a>{LinkCloseTag}</div>
+<div class="photo"><img src="{PhotoUrl-400}" alt="{PhotoAlt}" class="make_lightbox" data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" id="photo_{PostID}"/></div>
 {block:ifShowPhotoCaptions}
 <div class="photo_caption">
 {block:Caption}{Caption}
