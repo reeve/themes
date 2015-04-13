@@ -88,7 +88,8 @@ src="http://static.tumblr.com/ek9ly4s/ZPLmx9glq/jquery-latest-homemadethemes.js"
 <link href='http://fonts.googleapis.com/css?family=Lato:400,600|PT+Sans:400,700|Source+Sans+Pro' rel='stylesheet' type='text/css'>
 
 <script>
-$(function(){ // shorthand document.ready()
+
+function resetLightbox() {
     $('.make_lightbox').each(function(){ // this is just an element I let them click, it carries a series of data- attributes.
         $(this).on('click',function(){  // when clicked. this is the newer jQuery click() handler that's only in v1.8+ so that may be something to note.
             var lbArray = []; // create blank array.
@@ -98,7 +99,12 @@ $(function(){ // shorthand document.ready()
             $('body').toggleClass('tumblr_lightbox_active'); // use this to prevent the user from scrolling.
         });
     });
+}
+
+$(function(){ // shorthand document.ready()
+    resetLightbox();
 });
+
 </script>
 
 <style type="text/css">
@@ -689,8 +695,15 @@ Tumblr.LikeButton.get_status_by_page(++window.n);
 var $newElems = $( newElements );
 $newElems.hide();
 // ensure that images load before adding to masonry layout
-$newElems.imagesLoaded(function(){
-$content.masonry( 'appended', $newElems, true, function(){$newElems.fadeIn(300);} );});});});</script>
+$newElems.imagesLoaded(
+    function(){
+        resetLightbox();
+        $content.masonry( 'appended', $newElems, true, function(){
+            $newElems.fadeIn(300);}
+        );}
+    );}
+);}
+);</script>
 {/block:IndexPage}
 
 
