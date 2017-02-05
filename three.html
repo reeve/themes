@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 
  <!--
-	
+
 	theme three beta version 1.0
 	by homemade themes & themesbyjames, created january 2013.
 
-	http://themesbyjames.tumblr.com 
+	http://themesbyjames.tumblr.com
 	http://homemadethemes.tumblr.com
-	
+
     	for cover photo images go to
 	http://homemadethemes.tumblr.com/cover-images/
-	
+
+  Modified by Adam Reeve http://adamreeve.tumblr.com
+
   -->
 
 <html><head>
@@ -38,7 +40,7 @@
 <meta name="image:Background" content="" />
 <meta name="image:Sidebar" content="" />
  <meta name="Body font" content="Helvetica Neue">
- 
+
 <meta name="if:Show Cover" content="1"/>
 <meta name="if:Show Sidebar" content="1"/>
 <meta name="if:Rounded Photos" content="0"/>
@@ -93,7 +95,7 @@ function resetLightbox() {
     $('.make_lightbox').each(function(){ // this is just an element I let them click, it carries a series of data- attributes.
         $(this).on('click',function(){  // when clicked. this is the newer jQuery click() handler that's only in v1.8+ so that may be something to note.
             var lbArray = []; // create blank array.
-            var arrayContents = {"width":$(this).data('width'), "height":$(this).data('height'), "low_res":$(this).data("lowres"), "high_res":$(this).data('highres')}; // make set of the data- attributes. 
+            var arrayContents = {"width":$(this).data('width'), "height":$(this).data('height'), "low_res":$(this).data("lowres"), "high_res":$(this).data('highres')}; // make set of the data- attributes.
             lbArray.push(arrayContents); // push the set into the array.
             Tumblr.Lightbox.init(lbArray,1); // trigger Tumblr lightbox. the '1' is the number of photos it expects. specific to how tumblr has things set up.
             $('body').toggleClass('tumblr_lightbox_active'); // use this to prevent the user from scrolling.
@@ -119,13 +121,13 @@ body, p {
 	padding: 0px;
 	margin: 0px;
 	color:{color:text};}
- 
+
 body {
 	background-color:{color:background};
 	background-image:url({image:Background});
 	background-attachment: fixed;
 	background-repeat: repeat;}
- 
+
 a {
 	text-decoration:none;
 	color:{color:text};
@@ -133,42 +135,55 @@ a {
 	-moz-transition: all 0.4s linear;
 	transition: all 0.4s linear;
 }
-	
+
 a:link, a:active, a:visited{
 	color: {color:Link};
 	text-decoration: none;
 	-webkit-transition: all 0.6s ease-out;
 	-moz-transition: all 0.6s ease-out;
 	-o-transition: all   0.6s ease-out;transition: all 0.6s ease-out;}
- 
+
 a:hover{
 	color:{color:link hover};
 }
- 
+
 #content{
 	margin:auto;position:relative;
 	padding-bottom:10px;
 	padding-top:20px;
 	{block:IndexPage}width:1280px;{/block:IndexPage}
-	{block:PermalinkPage}width:500px;{/block:PermalinkPage}}
+	{block:PermalinkPage}width:auto;{/block:PermalinkPage}}
 
 @media (max-width: 1340px) {
 	#content{width:940px;}}
- 
-@media (max-width:1000px) {
-	#content{width:630px;}} 
 
+@media (max-width:1000px) {
+	#content{width:630px;}}
+
+.sizingblock {
+  margin:auto;
+  width:500px;
+  max-width: 90%;
+  display: table;
+}
 
 .entry{
     {block:ifRoundedPhotos}border-radius:5px;{/block:ifroundedPhotos}
     background-color:{color:Center Background};
- 	margin:5px;
-	margin-bottom:10px;	
 	padding:5px 5px 2px 5px;
-	float:left;
 	height:auto;
-	{block:IndexPage}overflow:hidden;width:400px;{/block:IndexPage}
-	{block:PermalinkPage}width:500px;height:auto;{/block:PermalinkPage}}
+	{block:IndexPage}
+	float:left;
+	overflow:hidden;width:400px;
+ 	margin:5px;
+	margin-bottom:10px;
+	{/block:IndexPage}
+	{block:PermalinkPage}
+	width:auto;
+	height:auto;
+	margin:auto;
+	display: table;
+	{/block:PermalinkPage}}
 
 .entry .gradient {
     width: 400px;
@@ -177,7 +192,13 @@ a:hover{
 
 .entry img{
     {block:ifRoundedPhotos}border-radius:3px;{/block:ifroundedPhotos}
-    {block:IndexPage}width:400;{/block:IndexPage}}
+    {block:IndexPage}width:400;{/block:IndexPage}
+    {block:PermalinkPage}
+    height: auto;
+    max-width: 100%;
+    margin: auto;
+    {/block:PermalinkPage}
+}
 
 {block:indexpage}
 .photo{
@@ -200,7 +221,7 @@ blockquote{
     margin:5px 0;
     border-left:2px solid{color:Text};
     padding-left:10px}
-	
+
 
 #cover{
     background:url("{image:cover photo}") no-repeat center;
@@ -234,7 +255,7 @@ blockquote{
     line-height: 0px;
     {/block:ifLogoImage}
 }
-    
+
 #cover img {
     height: 150px;
     margin: 45px 0;
@@ -246,7 +267,7 @@ blockquote{
     -webkit-transition: all 0.2s linear;
 	-moz-transition: all 0.2s linear;
 	transition: all 0.2s linear;}
-	
+
 #navigation {
     background:{color:feature color};
     padding-top:8px;
@@ -254,14 +275,14 @@ blockquote{
     -webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
-}	
-	
+}
+
 #navigation a {
     font-size:16px;
     padding:6px;
 	color: {color:Navigation Link};
 }
-	
+
 ::-webkit-input-placeholder{
     color:#555555;font:15px "Source Sans Pro", san-serif}
 :-moz-placeholder{
@@ -294,7 +315,7 @@ blockquote{
     height:26px;
     width:26px;
     margin-right:5px;
-    margin-bottom:5px; 
+    margin-bottom:5px;
     border-radius:32px;
     border:4px solid {color:Social Icons Background};
     background-color:{color:Social Icons Background};
@@ -302,7 +323,7 @@ blockquote{
 	-webkit-transition: all 0.3s linear;
 	-moz-transition: all 0.3s linear;
 	transition: all 0.3s linear}
-	
+
 .xpermanote a{
     font-family:  Helvetica, Arial, sans-serif;
     font-size:11px;
@@ -321,7 +342,7 @@ blockquote{
     {/block:indexpage}
     font-size:20px;
     margin-bottom:-5px;}
-    
+
 .xquote{
     margin-left:-5px;
     margin-top:-5px;
@@ -331,7 +352,7 @@ blockquote{
     border-top:13px solid {color:feature color};
     {/block:indexpage}
     font-size:20px;
-    margin-bottom:-5px;}   
+    margin-bottom:-5px;}
 
 .xtext{
     margin-left:-5px;
@@ -341,13 +362,13 @@ blockquote{
     width:390px;
     border-top:13px solid {color:feature color};
     {/block:indexpage}
-    margin-bottom:-5px;}    
-    
+    margin-bottom:-5px;}
+
 #description{
     text-align:center;
     margin-bottom:10px;
     padding:10px 5px 0px 5px;}
-    
+
 .photo_caption {
     padding: 3px;
 }
@@ -369,13 +390,13 @@ a.tumblr_blog, div.photo_caption a {
 {block:ifShowCover}
 <div id="cover">
 <div id="cover-overlay"></div>
-    
+
 {block:ifnotLogoImage}
 {block:ifShowBlogTitle}<a href="/">{Title}</a>{/block:ifShowBlogTitle}
 {/block:ifnotLogoImage}
 
 {block:ifLogoImage}
-    <a href="/"><img src="{image:Logo}" alt=""></a> 
+    <a href="/"><img src="{image:Logo}" alt=""></a>
 </div>{block:ifLogoImage}
 </div>
 {/block:ifShowCover}
@@ -389,7 +410,7 @@ a.tumblr_blog, div.photo_caption a {
 {block:AskEnabled} <a href="/ask">{text:Ask Title}</a>{/block:AskEnabled}{block:ifLinkOneTitle}<a href="{text:Link One}">{text:Link One Title}</a>{/block:ifLinkOneTitle}{block:ifLinkTwoTitle}<a href="{text:Link Two}">{text:Link Two Title}</a> {/block:ifLinkTwoTitle}{block:ifLinkThreeTitle}<a href="{text:Link Three}">{text:Link Three Title}</a> {/block:ifLinkThreeTitle}{block:ifLinkFourTitle}<a href="{text:Link Four}">{text:Link Four Title}</a> {/block:ifLinkFourTitle}{block:ifLinkFiveTitle}<a href="{text:Link Five}">{text:Link Five Title}</a> {/block:ifLinkFiveTitle}{block:ifLinkSixTitle}<a href="{text:Link Six}">{text:Link Six Title}</a> {/block:ifLinkSixTitle}
 {block:HasPages}{block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}
 {/block:HasPages}
-</div> 
+</div>
 
 
 <div id="content">
@@ -409,69 +430,69 @@ a.tumblr_blog, div.photo_caption a {
 <img src="http://static.tumblr.com/ek9ly4s/4OXmywly6/facebook-xxl.png" alt="" title="Facebook"/></a>
 {/block:ifShowFacebookIcon}
 {block:ifShowTwitterIcon}
-<a href="{text:Twitter link}">      
+<a href="{text:Twitter link}">
 <img src="http://static.tumblr.com/ek9ly4s/u8Kmywlyj/twitter-xxl.png" alt="" title="Twitter"/></a>
 {/block:ifShowTwitterIcon}
 {block:ifShowInstagramIcon}
-<a href="{text:Instagram link}"> 
+<a href="{text:Instagram link}">
 <img src="http://static.tumblr.com/ek9ly4s/TiYmywlyv/instagram-xxl.png" alt="" title="Instagram"/></a>
 {/block:ifShowInstagramIcon}
 {block:ifShowGooglePlusIcon}
-<a href="{text:Google Plus link}">        
+<a href="{text:Google Plus link}">
 <img src="http://static.tumblr.com/ek9ly4s/L9Zmywlz7/google-plus-xxl.png" alt="" title="Google+"/></a>
 {/block:ifShowGooglePlusIcon}
 {block:ifShowPinterestIcon}
-<a href="{text:Pinterest link}">         
+<a href="{text:Pinterest link}">
 <img src="http://static.tumblr.com/ek9ly4s/xrCmywlzi/pinterest-3-xxl.png" alt="" title="Pinterest"/></a>
 {/block:ifShowPinterestIcon}
 {block:ifShowSkypeIcon}
-<a href="{text:Skype link}">                   
+<a href="{text:Skype link}">
 <img src="http://static.tumblr.com/ek9ly4s/N8smywlzv/skype-xxl.png" alt="" title="Skype"/></a>
 {block:ifShowSkypeIcon}
 {block:ifShowYoutubeIcon}
-<a href="{text:Youtube link}">                        
+<a href="{text:Youtube link}">
 <img src="http://static.tumblr.com/ek9ly4s/f7kmywm05/youtube-xxl.png" alt="" title="YouTube"/></a>
 {/block:ifShowYoutubeIcon}
 {block:ifShowMessageIcon}
-<a href="/ask">                      
+<a href="/ask">
 <img src="http://static.tumblr.com/ek9ly4s/4ismywm0h/email-xxl.png" alt="" title="{AskLabel}"/></a>
 {/block:ifShowMessageIcon}
 {/block:ifnotBlackSocialIcons}
 <!-- WHITE GOES BLACK  -->
-{block:ifBlackSocialIcons}   
+{block:ifBlackSocialIcons}
 {block:ifShowFacebookIcon}
 <a href="{text:Facebook link}">
 <img src="http://static.tumblr.com/ek9ly4s/maWmywm6i/black-facebook.png" alt="" title="Facebook"/></a>
 {/block:ifShowFacebookIcon}
 {block:ifShowTwitterIcon}
-<a href="{text:Twitter link}">      
+<a href="{text:Twitter link}">
 <img src="http://static.tumblr.com/ek9ly4s/G9omywm6x/twitter-xxl.png" alt="" title="Twitter"/></a>
 {/block:ifShowTwitterIcon}
 {block:ifShowInstagramIcon}
-<a href="{text:Instagram link}"> 
+<a href="{text:Instagram link}">
 <img src="http://static.tumblr.com/ek9ly4s/aI5mywm7o/instagram-xxl.png" alt="" title="Instagram"/></a>
 {/block:ifShowInstagramIcon}
 {block:ifShowGooglePlusIcon}
-<a href="{text:Google Plus link}">        
+<a href="{text:Google Plus link}">
 <img src="http://static.tumblr.com/ek9ly4s/03Dmywm88/black-google-plus-xxl.png" alt="" title="Google+"/></a>
 {/block:ifShowGooglePlusIcon}
 {block:ifShowPinterestIcon}
-<a href="{text:Pinterest link}">         
+<a href="{text:Pinterest link}">
 <img src="http://static.tumblr.com/ek9ly4s/N8Qmywm8l/pinterest-3-xxl.png" alt="" title="Pinterest"/></a>
 {/block:ifShowPinterestIcon}
 {block:ifShowSkypeIcon}
-<a href="{text:Skype link}">                   
+<a href="{text:Skype link}">
 <img src="http://static.tumblr.com/ek9ly4s/XMimywm90/skype-xxl.png" alt="" title="Skype"/></a>
 {block:ifShowSkypeIcon}
 {block:ifShowYoutubeIcon}
-<a href="{text:Youtube link}">                        
+<a href="{text:Youtube link}">
 <img src="http://static.tumblr.com/ek9ly4s/xZdmywm9p/youtube-xxl.png" alt="" title="YouTube"/></a>
 {/block:ifShowYoutubeIcon}
 {block:ifShowMessageIcon}
-<a href="/ask">                      
+<a href="/ask">
 <img src="http://static.tumblr.com/ek9ly4s/eL7mywma4/email-xxl.png" alt="" title="{AskLabel}"/></a>
 {/block:ifShowMessageIcon}
-{block:ifBlackSocialIcons}   
+{/block:ifBlackSocialIcons}
  </div></center></div>
 {/block:indexpage}
 {/block:ifShowSidebar}
@@ -479,6 +500,11 @@ a.tumblr_blog, div.photo_caption a {
 
 {block:Posts}
 <div class = "autopagerize_page_element" >
+
+{block:PermalinkPage}
+<div class="sizingblock" {block:photo}style="width:{PhotoWidth-HighRes}px"{/block:photo}>
+{/block:PermalinkPage}
+
 <div class="entry">
 {block:Photo}
 {block:IndexPage}
@@ -489,14 +515,15 @@ a.tumblr_blog, div.photo_caption a {
 {block:Caption}{Caption}
 {block:HasTags}<br>
 {block:Tags}<a href="{TagURL}" class="tags">#{Tag}</a>{/block:Tags}
-{/block:hasTags}   
+{/block:hasTags}
 {/block:Caption}
 </div>
 {/block:ifShowPhotoCaptions}
 {/block:IndexPage}
-{block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" width=500px/>{LinkCloseTag}
+{block:PermalinkPage}{LinkOpenTag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}
 {/block:PermalinkPage}
-{block:IndexPage}{block:ifshowphotopermalinks}
+{block:IndexPage}
+{block:ifshowphotopermalinks}
 <div class="gradient"></div>
 <div class="xpermanote"><a href="{Permalink}">{NoteCountwithLabel}</a></div>
 <ul class="like_and_reblog_buttons">
@@ -510,7 +537,7 @@ a.tumblr_blog, div.photo_caption a {
 <div class="photoset">
 {block:IndexPage}{Photoset-400}<a href="{Permalink}">
 {Block:ifshowphotocaptions}{block:Caption}<div class="photo_caption">{Caption}</div>{/block:Caption}{/Block:ifshowphotocaptions}
-{block:IndexPage}
+
 {block:ifshowphotopermalinks}
 <div class="gradient"></div>
 <div class="xpermanote"><a href="{Permalink}">{NoteCountwithLabel}</a></div>
@@ -652,19 +679,17 @@ a.tumblr_blog, div.photo_caption a {
 
 {block:PermalinkPage}
 <div style="display:block;margin-top:10px;">
-{block:NoteCount}This {PostType}{block:Photoset}set{/block:Photoset} {block:Text}post {/block:Text}{block:chat}post {block:chat}{block:Audio}file {/block:Audio}with {NoteCountWithLabel}{/block:NoteCount}{block:Date}  was posted {TimeAgo} on the {DayOfMonth}{DayOfMonthSuffix} of {Month}, {Year}. {/block:Date} </div>
-<div style="display:block;margin-top:10px;">
-{block:RebloggedFrom}Reblogged from: <a href="{ReblogParentURL}" title="Check out {ReblogParentName}'s blog I reblogged this {PostType} {block:Text}post {/block:Text}{block:chat}post {block:chat}{block:Audio}file {/block:Audio}from them." target="_blank">{ReblogParentName}</a>
-<br>Posted by: <a href="{ReblogRootParentURL}" title="Just incase you were wondering {ReblogRootName} originally posted this {PostType}{block:Text} post{/block:Text}{block:chat} post{block:chat}{block:Audio} file{/block:Audio}." target="_blank">{ReblogRootName}</a><br>
-{/block:RebloggedFrom}
-{block:HasTags}
-Tags:{block:Tags} <a href="{TagURL}" title="View more posts on my blog tagged '{Tag}'.">#{Tag}</a>{/block:Tags}<br>{/block:hasTags}
-{block:Caption}<div style="margin-top:10px;">{Caption}</div>{/block:Caption}{/block:PermalinkPage}
+{block:Caption}<div style="margin-top:10px;">{Caption}</div>{/block:Caption}
+{block:HasTags}<br>
+{block:Tags}<a href="{TagURL}" class="tags">#{Tag}</a>{/block:Tags}
+{/block:hasTags}
 
 {block:PostNotes}
-<div style="width:500px;height:250px;overflow-y:scroll;overflow-x:hidden;margin-left:-5px;margin-top:10px;">{PostNotes}</div>
+<div style="max-height:300px;overflow-y:scroll;overflow-x:hidden;margin-left:-5px;margin-top:10px;">{PostNotes}</div>
 {/block:PostNotes}
+{/block:PermalinkPage}
 </div>
+{block:PermalinkPage}<div class="sizingblock">{/block:PermalinkPage}
 </div>
 {/block:Posts}
 
